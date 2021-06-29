@@ -3,8 +3,6 @@ package com.example.worldranksfullstack.db.service;
 import com.example.worldranksfullstack.db.entity.Attachment;
 import com.example.worldranksfullstack.db.entity.AttachmentContent;
 import com.example.worldranksfullstack.db.repository.AttachmentRepository;
-import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -12,10 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.util.Locale;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class AttachmentService implements AttachmentServiceInterface {
@@ -26,7 +22,7 @@ public class AttachmentService implements AttachmentServiceInterface {
         this.attachmentRepository = attachmentRepository;
     }
 
-    @Override
+   /* @Override
     public Attachment save(Attachment attachment) {
         return null;
     }
@@ -72,10 +68,11 @@ public class AttachmentService implements AttachmentServiceInterface {
 
 
     }
+*/
 
     @Override
-    public HttpEntity<?> getContentByName(String name, HttpServletResponse response) {
-        Optional<Attachment> byName = attachmentRepository.findByName(name.toUpperCase(Locale.ROOT));
+    public HttpEntity<?> getContentByName(String alpha3Code, HttpServletResponse response) {
+        Optional<Attachment> byName = attachmentRepository.findByName(alpha3Code.toUpperCase());
 
         if (byName.isPresent()) {
             Attachment attachment = byName.get();
@@ -87,7 +84,7 @@ public class AttachmentService implements AttachmentServiceInterface {
                     .contentLength(attachment.getSize())
                     .body(attachmentContent.getBytes());
         } else {
-            return null;
+            return ResponseEntity.notFound().build();
         }
 
     }

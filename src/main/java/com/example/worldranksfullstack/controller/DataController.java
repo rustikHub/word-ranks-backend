@@ -18,10 +18,8 @@ public class DataController {
         this.attachmentService = attachmentService;
     }
 
-    @GetMapping("{id}")
-    public HttpEntity<?> getImageData(@PathVariable("id") String id, HttpServletResponse response) {
-        return attachmentService.getContentByName(id, response);
+    @GetMapping("img/{alpha3Code}")
+    public HttpEntity<?> getImageData(@PathVariable("alpha3Code") String alpha3Code, HttpServletResponse response) {
+        return attachmentService.getContentByName(alpha3Code, response);
     }
-
-
 }

@@ -18,13 +18,31 @@ public class Country extends AbsIntegerEntity {
 
     private Double area;
 
+    private String name;
+
     private String nativeName;
 
     private String capital;
 
+    private String region;
+
     private String demonym;
 
+    private Double gini;
+
+    private Integer population;
+
+    private String numericCode;
+
+    @Column(unique = true)
+    private String alpha3Code;
+
+    @Column(unique = true)
     private String alpha2Code;
+
+    private String cioc;
+
+    private String subregion;
 
     @OneToOne
     Flag flag;
@@ -35,21 +53,11 @@ public class Country extends AbsIntegerEntity {
     @ElementCollection
     private List<String> borders;
 
-    private String subregion;
-
     @ElementCollection
     private List<String> callingCodes;
 
     @ManyToMany
     private List<RegionalBlocsItem> regionalBlocs;
-
-    private Double gini;
-
-    private Integer population;
-
-    private String numericCode;
-
-    private String alpha3Code;
 
     @ElementCollection
     private List<String> topLevelDomain;
@@ -57,17 +65,11 @@ public class Country extends AbsIntegerEntity {
     @ElementCollection
     private List<String> timezones;
 
-    private String cioc;
-
     @OneToOne
     private Translations translations;
 
-    private String name;
-
     @ElementCollection
     private List<String> altSpellings;
-
-    private String region;
 
     @ElementCollection
     private List<Double> latLang;
