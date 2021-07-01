@@ -1,13 +1,11 @@
 package com.example.worldranksfullstack.payload;
 
 import com.example.worldranksfullstack.db.entity.Country;
-import com.sun.istack.NotNull;
 import lombok.AccessLevel;
 import lombok.Data;
-import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
-import org.springframework.lang.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -36,7 +34,7 @@ public class ResCountry {
 
     private List<String> callingCodes;
 
-    private List<ResRegionalBlocsItem> regionalBlocs;
+    private ArrayList<ResRegionalBlocsItem> regionalBlocs;
 
     private Double gini;
 
@@ -76,7 +74,7 @@ public class ResCountry {
         this.borders = country.getBorders();
         this.subregion = country.getSubregion();
         this.callingCodes = country.getCallingCodes();
-        this.regionalBlocs = country.getRegionalBlocs().stream().map(ResRegionalBlocsItem::new).collect(Collectors.toList());
+        this.regionalBlocs = country.getRegionalBlocs().stream().map(ResRegionalBlocsItem::new).collect(Collectors.toCollection(ArrayList::new));
         this.gini = country.getGini();
         this.population = country.getPopulation();
         this.numericCode = country.getNumericCode();

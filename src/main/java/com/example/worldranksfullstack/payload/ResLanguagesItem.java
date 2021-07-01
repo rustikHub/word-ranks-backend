@@ -26,6 +26,4 @@ public class ResLanguagesItem {
         this.iso639_1 = languagesItem.getIso639_1();
     }
 
-    public ResLanguagesItem(List<LanguagesItem> languages) {
-    }
 }
