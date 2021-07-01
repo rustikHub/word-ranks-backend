@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -71,7 +72,9 @@ public class ResCountry {
         this.flag_id = country.getFlag().getAttachment().getId();
         this.alpha2Code = country.getAlpha2Code();
         List<ResLanguagesItem> list = (country.getLanguages().stream().map(ResLanguagesItem::new).collect(Collectors.toList()));
-        this.languages = (ResLanguagesItem[]) list.toArray();
+        languages = new ResLanguagesItem[list.size()];
+
+        this.languages = list.toArray(languages);
         this.borders = country.getBorders();
         this.subregion = country.getSubregion();
         this.callingCodes = country.getCallingCodes();
