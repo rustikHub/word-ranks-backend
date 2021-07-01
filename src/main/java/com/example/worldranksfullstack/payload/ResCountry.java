@@ -26,7 +26,7 @@ public class ResCountry {
 
     private String alpha2Code;
 
-    private ArrayList<ResLanguagesItem> languages;
+    private ResLanguagesItem[] languages;
 
     private List<String> borders;
 
@@ -70,7 +70,8 @@ public class ResCountry {
         this.demonym = country.getDemonym();
         this.flag_id = country.getFlag().getAttachment().getId();
         this.alpha2Code = country.getAlpha2Code();
-        this.languages = country.getLanguages().stream().map(ResLanguagesItem::new).collect(Collectors.toCollection(ArrayList::new));
+        List<ResLanguagesItem> list = (country.getLanguages().stream().map(ResLanguagesItem::new).collect(Collectors.toList()));
+        this.languages = (ResLanguagesItem[]) list.toArray();
         this.borders = country.getBorders();
         this.subregion = country.getSubregion();
         this.callingCodes = country.getCallingCodes();
