@@ -5,16 +5,14 @@ import com.example.worldranksfullstack.db.service.CountryService;
 import com.example.worldranksfullstack.payload.ResCountry;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("country")
+@CrossOrigin
 public class CountryController {
     private final CountryService countryService;
 
